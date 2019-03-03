@@ -1,0 +1,82 @@
+<html>
+  <head>
+    <title>HackerNews</title>
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet"> 
+    <style>
+	html {
+		padding: 0; margin: 0;
+	}
+	body {
+		font-family: 'PT Sans', san-serif;
+		font-size: 16px;
+		line-height: 22px;
+		display: flex;
+		flex-direction: row;
+		padding: 0; margin: 0;
+	}
+	
+	ul {
+		margin: 0; padding: 10px;
+		list-style: none;
+		counter-reset: news-item-counter;
+		flex-basis: 400px;
+	}
+
+	ul li {
+		padding: 10px 10px 10px 30px;
+		position: relative;
+		margin: 0;
+		cursor: pointer;
+	}
+
+	ul li:before {
+		content: counter(news-item-counter);
+		counter-increment: news-item-counter;
+		position: absolute;
+		top: 10px; left: 0;
+		font-size: 0.8em;
+		text-align: center;
+		line-height: 24px;
+		width: 24px; height: 24px;
+		background: #27ae60;
+		color: #FFF;
+		font-weight: bold;
+		border-radius: 3px;
+	}	
+	
+	ul li a {
+		text-decoration: none;
+		font-weight: bold;
+		color: #27ae60;
+	}
+	
+	.metadata {
+		font-size: 0.8em;
+	}
+	
+	#frame {
+		flex: 1;
+		border: none;
+		border-left: 1px solid #27ae60;
+	}
+    </style>
+  </head>
+<script>
+const loadPage = (url) => {
+	let frame = document.getElementById("frame");
+	frame.src = url;
+}
+</script>
+  <body>
+    <ul>
+      {{#each this }}
+      <li class="item" onclick="loadPage('{{ link }}')">
+        <div><a>{{ title }}</a></div>
+        <div class="description">{{{ description }}}</div>
+        <div class="metadata">{{ pub_date }}</div>
+      </li>
+      {{/each}}
+	<iframe id="frame"></iframe>
+    </ul>
+  </body>
+</html>

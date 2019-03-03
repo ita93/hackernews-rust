@@ -9,3 +9,10 @@ rss = {version = "1.6.1", features = ["from_url"] }
 serde = {version = "1.0.89", features = ["derive"] }
 serde_derive = "1.0.89"
 serde_json = "1.0.39"
+rocket = "0.4.0"
+rocket_codegen = "0.4.0"
+
+[dependencies.rocket_contrib]
+version = "*"
+default-features = false
+features = ["handlebars_templates"]
